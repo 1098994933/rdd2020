@@ -140,6 +140,7 @@ def check_file(file):
 def check_dataset(dict):
     # Download dataset if not found
     val, s = dict.get('val'), dict.get('download')
+    print("val,s",val,s)
     if val and len(val):
         val = [os.path.abspath(x) for x in (val if isinstance(val, list) else [val])]  # val path
         if not all(os.path.exists(x) for x in val):

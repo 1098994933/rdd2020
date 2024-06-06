@@ -1,0 +1,13 @@
+train: ../yolov5/data/train/images
+val: ../yolov5/data/valid/images
+test: ../yolov5/data/test/images
+
+nc: 4
+names: ['boli', 'fatigue crack', 'geshang', 'hot crack']
+
+roboflow:
+  workspace: testmyspace
+  project: tire_identify
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/testmyspace/tire_identify/dataset/3

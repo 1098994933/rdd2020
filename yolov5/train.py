@@ -34,7 +34,10 @@ logger = logging.getLogger(__name__)
 
 
 def train(hyp, opt, device, tb_writer=None):
-    logger.info(f'Hyperparameters {hyp}')
+    """
+
+    """
+    logger.info(f'Hyper-parameters {hyp}')
     log_dir = Path(tb_writer.log_dir) if tb_writer else Path(opt.logdir) / 'evolve'  # logging directory
     wdir = log_dir / 'weights'  # weights directory
     os.makedirs(wdir, exist_ok=True)
@@ -383,6 +386,24 @@ def train(hyp, opt, device, tb_writer=None):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    """
+    data: 数据集配置文件，数据集路径，类名等
+    hyp: 超参致文件
+    epochs:训练总轮次
+    batch-size:批次大小
+    img-size:输入图片分辨率大小
+    rect:是否采用矩形训练，
+    resume:斯点续训(从上次结果接着训练)
+    nosave:不保存模型，默认
+    notest:不进行test，默认False
+    noautoanchor:不自动调整anchor，默认False
+    evolve:是否进行超参数进化，默认False
+    bucket:
+    cache-images:是否提前缓存图片到内存，以加快训练速度，默认False
+    weights:加的权重文件
+    name:数据集名字，如果设置:results.txtto results_name.txt，默认无device:训练的设备，cpu:0(表示一个gpu设备cuda:0);0,1,2，3(多个gpu设备)
+    multi-scale:是否进行多尺度训练，默认False
+    """
     parser.add_argument('--weights', type=str, default='yolov5s.pt', help='initial weights path')
     parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
     parser.add_argument('--data', type=str, default='data/coco128.yaml', help='data.yaml path')
@@ -538,5 +559,5 @@ if __name__ == '__main__':
 
         # Plot results
         plot_evolution(yaml_file)
-        print('Hyperparameter evolution complete. Best results saved as: %s\nCommand to train a new model with these '
-              'hyperparameters: $ python train.py --hyp %s' % (yaml_file, yaml_file))
+        print('Hyper-parameter evolution complete. Best results saved as: %s\nCommand to train a new model with these '
+              'hyper-parameters: $ python train.py --hyp %s' % (yaml_file, yaml_file))
