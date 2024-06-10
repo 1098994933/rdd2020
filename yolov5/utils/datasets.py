@@ -65,7 +65,7 @@ def create_dataloader(path, imgsz, batch_size, stride, opt, hyp=None, augment=Fa
     sampler = torch.utils.data.distributed.DistributedSampler(dataset) if rank != -1 else None
     dataloader = InfiniteDataLoader(dataset,
                                     batch_size=batch_size,
-                                    num_workers=nw,
+                                    num_workers=0,  # num_workers=nw,
                                     sampler=sampler,
                                     pin_memory=True,
                                     collate_fn=LoadImagesAndLabels.collate_fn)  # torch.utils.data.DataLoader()
